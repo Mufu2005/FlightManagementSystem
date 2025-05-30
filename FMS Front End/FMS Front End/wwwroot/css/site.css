@@ -1,0 +1,59 @@
+:root{
+    --coal:#17252A;
+    --Dgreen: #2B7A78;
+    --green: #3AAFA9;
+    --Owhite: #DEF2F1;
+    --white: #FEFFFF;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: var(--Owhite);
+}
+
+.text {
+    color: var(--green) !important;
+}
+
+.bttn {
+    background-color: var(--Dgreen);
+    color: var(--white);
+}
+
+.bttn:hover{
+    background-color: grey;
+}
+
+.txtbox {
+    background-color: var(--white);
+    color: var(--green);
+}
+
+.txtbox:focus {
+        background-color: var(--green);
+        color: var(--white);
+}
+
+.navb{
+    background-color: var(--green);
+    color: var(--Owhite);
+}

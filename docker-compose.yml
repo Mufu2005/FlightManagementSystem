@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  mysql-user:
+    image: mysql:8.0
+    container_name: userdb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 2380238
+      MYSQL_DATABASE: flightservicedb
+    ports:
+      - "3307:3306"
+
+  mysql-booking:
+    image: mysql:8.0
+    container_name: bookingdb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 2380238
+      MYSQL_DATABASE: flightservicedb
+    ports:
+      - "3308:3306"
+
+  mysql-flight:
+    image: mysql:8.0
+    container_name: flightdb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 2380238
+      MYSQL_DATABASE: flightservicedb
+    ports:
+      - "3309:3306"
+
+  mysql-checkin:
+    image: mysql:8.0
+    container_name: checkindb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 2380238
+      MYSQL_DATABASE: flightservicedb
+    ports:
+      - "3310:3306"
+
+  userservice:
+    build: ./Services/UserService
+    ports:
+      - "5287:80"
+    depends_on:
+      - mysql-user
+
+  bookingservice:
+    build: ./Services/BookingService
+    ports:
+      - "5138:80"
+    depends_on:
+      - mysql-booking
+
+  flightservice:
+    build: ./Services/FlightService
+    ports:
+      - "5057:80"
+    depends_on:
+      - mysql-flight
+
+  checkinservice:
+    build: ./Services/CheckInService
+    ports:
+      - "5032:80"
+    depends_on:
+      - mysql-checkin
+
+  fmsfrontend:
+    build: ./FMS Front End/FMS Front End
+    ports:
+      - "5263:80"
+    depends_on:
+      - userservice
+      - bookingservice
+      - flightservice
+      - checkinservice

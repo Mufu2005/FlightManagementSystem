@@ -1,0 +1,45 @@
+﻿@model IEnumerable<FMS_Front_End.Models.Booking>
+
+<div class="container mt-5">
+	<div class="d-flex justify-content-between align-items-center mb-3">
+		<h2 class="mb-0 text">Bookings</h2>
+		<a asp-action="Create" class="btn btn-primary bttn">
+			<i class="bi bi-plus-lg"></i> New Booking
+		</a>
+	</div>
+
+	<div class="card shadow rounded text">
+		<div class="card-body p-0 text" style="background-color: #17252A;">
+			<div class="table-responsive text">
+				<table class="table table-striped table-hover mb-0 text">
+					<thead class="table-light text">
+					<tr class="text">
+						<th>ID</th>
+						<th>Flight ID</th>
+						<th>Passenger</th>
+						<th>Seat</th>
+						<th>Actions</th>
+					</tr>
+					</thead>
+					<tbody>
+					@foreach (var b in Model)
+					{
+						<tr class="text">
+							<td>@b.Id</td>
+							<td>@b.FlightId</td>
+							<td>@b.PassengerName</td>
+							<td>@b.SeatNumber</td>
+							<td>
+								<div class="btn-group" role="group">
+									<a asp-action="Edit" asp-route-id="@b.Id" class="btn btn-sm btn-outline-warning">Edit</a>
+									<a asp-action="Delete" asp-route-id="@b.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+								</div>
+							</td>
+						</tr>
+					}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

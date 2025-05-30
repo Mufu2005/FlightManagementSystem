@@ -1,0 +1,36 @@
+﻿@model FMS_Front_End.Models.LoginViewModel
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<form asp-action="Login" method="post" class="p-4 shadow rounded w-50 mx-auto mt-5" style="background-color: #17252A">
+	<h2 class="text mb-4 text-center">LOGIN</h2>
+
+	<div class="mb-3" style="">
+		<label asp-for="Email" class="text form-label">Email</label>
+		<input asp-for="Email" class="txtbox form-control" placeholder="Enter your email" required />
+		<span asp-validation-for="Email" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="Password" class="text form-label">Password</label>
+		<div class="input-group">
+			<input type="password" id="loginPassword" asp-for="Password" class="txtbox form-control" placeholder="Enter your password" required />
+			<button type="button" class="bttn btn btn-outline-secondary" onclick="togglePassword('loginPassword')" tabindex="-1" aria-label="Toggle password visibility">Show</button>
+		</div>
+		<span asp-validation-for="Password" class="text-danger"></span>
+	</div>
+
+	<button type="submit" class="bttn btn btn-success w-100">Login</button>
+</form>
+
+@section Scripts {
+	<script>
+		function togglePassword(id) {
+			const field = document.getElementById(id);
+			if (field.type === "password") {
+				field.type = "text";
+			} else {
+				field.type = "password";
+			}
+		}
+	</script>
+}

@@ -1,0 +1,77 @@
+﻿@{
+	var isLoggedIn = Context.Session.GetString("JWToken") != null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>@ViewData["Title"] - FMS_Front_End</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/FMS_Front_End.styles.css" asp-append-version="true" />
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-sm navbar-light border-bottom shadow-sm mb-3 navb">
+			<div class="container-fluid">
+				<a class="navbar-brand">FMS</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse d-sm-flex justify-content-center" id="navbarSupportedContent">
+					<ul class="navbar-nav flex-grow-1">
+						@if (!isLoggedIn)
+						{
+							<li class="nav-item">
+								<a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Login" ? "active" : "")" asp-controller="User" asp-action="Login">Login</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Register" ? "active" : "")" asp-controller="User" asp-action="Register">Register</a>
+							</li>
+						}
+						else
+						{
+							<li class="nav-item">
+								<a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Flight" ? "active" : "")" asp-controller="Flight" asp-action="Index">Flights</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Booking" ? "active" : "")" asp-controller="Booking" asp-action="Index">Bookings</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "CheckIn" ? "active" : "")" asp-controller="CheckIn" asp-action="Index">Check In</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" asp-controller="User" asp-action="Logout">Logout</a>
+							</li>
+						}
+					</ul>
+					@if (isLoggedIn)
+					{
+						<span class="navbar-text ms-auto text">
+							Welcome, Traveler ✈️
+						</span>
+					}
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="container">
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
+
+	<footer class="border-top footer text-muted py-3 mt-auto">
+		<div class="container text-center text">
+			&copy; 2025 - FMS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+		</div>
+	</footer>
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

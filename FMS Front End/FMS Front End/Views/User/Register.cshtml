@@ -1,0 +1,42 @@
+﻿@model FMS_Front_End.Models.RegisterViewModel
+
+<form asp-action="Register" method="post" class="p-4 shadow rounded w-50 mx-auto mt-5" style="background-color: #17252A">
+	<h2 class="mb-4 text-center text">Register</h2>
+
+	<div class="mb-3">
+		<label asp-for="Email" class="form-label text">Email</label>
+		<input asp-for="Email" class="form-control txtbox" placeholder="Enter your email" required />
+		<span asp-validation-for="Email" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="Username" class="form-label text">Username</label>
+		<input asp-for="Username" class="form-control txtbox" placeholder="Choose a username" required />
+		<span asp-validation-for="Username" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="PasswordHash" class="form-label text">Password</label>
+		<div class="input-group">
+			<input type="password" id="regPassword" asp-for="PasswordHash" class="form-control txtbox" placeholder="Enter your password" required />
+			<button type="button" class="btn btn-outline-secondary bttn" onclick="togglePassword('regPassword')" tabindex="-1" aria-label="Toggle password visibility">Show</button>
+		</div>
+		<span asp-validation-for="PasswordHash" class="text-danger"></span>
+	</div>
+
+	<button type="submit" class="btn btn-primary w-100 bttn">Register</button>
+
+	@if (!string.IsNullOrEmpty(ViewBag.Message))
+	{
+		<p class="text-danger mt-3 text-center">@ViewBag.Message</p>
+	}
+</form>
+
+@section Scripts {
+	<script>
+        function togglePassword(id) {
+            const field = document.getElementById(id);
+            field.type = field.type === "password" ? "text" : "password";
+        }
+    </script>
+}

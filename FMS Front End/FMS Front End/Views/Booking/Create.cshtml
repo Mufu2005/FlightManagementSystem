@@ -1,0 +1,35 @@
+﻿@model FMS_Front_End.Models.Booking
+
+<div class="container mt-5">
+	<div class="row justify-content-center">
+		<div class="col-md-6">
+			<div class="card shadow rounded" style=" background-color: #17252A;">
+				<div class="card-header" style=" background-color: #17252A;">
+					<h4 class="mb-0 text">New Booking</h4>
+				</div>
+				<div class="card-body">
+					<form asp-action="Create" method="post">
+						<div class="mb-3">
+							<label asp-for="FlightId" class="form-label text">Flight ID</label>
+							<input asp-for="FlightId" class="form-control txtbox" />
+							<span asp-validation-for="FlightId" class="text-danger"></span>
+						</div>
+						<div class="mb-3">
+							<label asp-for="PassengerName" class="form-label text">Passenger Name</label>
+							<input asp-for="PassengerName" class="form-control txtbox" />
+							<span asp-validation-for="PassengerName" class="text-danger"></span>
+						</div>
+						<div class="mb-3">
+							<label asp-for="SeatNumber" class="form-label text">Seat Number</label>
+							<input asp-for="SeatNumber" class="form-control txtbox" />
+							<span asp-validation-for="SeatNumber" class="text-danger"></span>
+						</div>
+						<div class="d-grid">
+							<button type="submit" class="btn btn-primary bttn">Submit Booking</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

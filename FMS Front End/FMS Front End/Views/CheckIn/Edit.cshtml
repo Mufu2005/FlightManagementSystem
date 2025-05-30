@@ -1,0 +1,24 @@
+﻿@model FMS_Front_End.Models.CheckIn
+
+<h2>Edit Check-In</h2>
+
+<form asp-action="Edit" method="post">
+	<input type="hidden" asp-for="Id" />
+	<div class="form-group">
+		<label>Booking ID</label>
+		<input class="form-control" asp-for="BookingId" />
+	</div>
+	<div class="form-group">
+		<label>Check-In Time</label>
+		<input type="datetime-local" class="form-control" asp-for="CheckInTime" />
+	</div>
+	<div class="form-group">
+		<label>Seat Number</label>
+		<input class="form-control" asp-for="SeatNumber" />
+	</div>
+	<div class="form-group">
+		<label>Boarded</label>
+		<input type="checkbox" asp-for="IsBoarded" />
+	</div>
+	<button type="submit" class="btn btn-primary mt-2">Update</button>
+</form>

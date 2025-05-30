@@ -1,0 +1,34 @@
+﻿@model List<FMS_Front_End.Models.CheckIn>
+
+<h2>Check-Ins</h2>
+
+<a class="btn btn-primary" href="/CheckIn/Create">Add Check-In</a>
+
+<table class="table table-bordered mt-3">
+	<thead>
+	<tr>
+		<th>ID</th>
+		<th>Booking ID</th>
+		<th>Time</th>
+		<th>Seat</th>
+		<th>Boarded?</th>
+		<th>Actions</th>
+	</tr>
+	</thead>
+	<tbody>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>@item.Id</td>
+			<td>@item.BookingId</td>
+			<td>@item.CheckInTime</td>
+			<td>@item.SeatNumber</td>
+			<td>@(item.IsBoarded ? "Yes" : "No")</td>
+			<td>
+				<a class="btn btn-warning" href="/CheckIn/Edit/@item.Id">Edit</a>
+				<a class="btn btn-danger" href="/CheckIn/Delete/@item.Id">Delete</a>
+			</td>
+		</tr>
+	}
+	</tbody>
+</table>
