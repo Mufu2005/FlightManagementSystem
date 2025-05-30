@@ -10,27 +10,27 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'dotnet build'
+                bat 'dotnet build'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'dotnet test'
+                bat 'dotnet test'
             }
         }
 
         stage('Publish') {
             steps {
-                sh 'dotnet publish -c Release -o out'
+                bat 'dotnet publish -c Release -o out'
             }
         }
 
         stage('Docker Build & Push') {
             steps {
-                sh 'docker build -t yourname/servicename .'
+                bat 'docker build -t yourname/servicename .'
                 // Optional Docker Hub push
-                // sh 'docker push mufummmmm/UserService'
+                // bat 'docker push mufummmmm/UserService'
             }
         }
     }
